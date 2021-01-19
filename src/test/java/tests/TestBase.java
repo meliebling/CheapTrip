@@ -12,7 +12,7 @@ public class TestBase {
     @BeforeTest(alwaysRun=true)
     public void openBrowser(){
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--window-size = 1920,1020");
+        options.addArguments("--window-size = 1920,1080");
         driver = new ChromeDriver();
         driver.get("http://test70.lowcoststrip.com/");
     }

@@ -1,5 +1,6 @@
 package pages;
 
+import models.CityData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,8 +35,27 @@ public class MainPage extends PageBase{
     WebElement dollarCurrency;
     @FindBy(css = "ion-item.select-interface-option")
     List<WebElement> currencyList;
+    @FindBy(name = "ion-input-0")
+    WebElement fromField;
+    @FindBy(name = "ion-input-1")
+    WebElement toField;
+    @FindBy(css = "ion-button.ion-color-primary")
+    WebElement letsGoButton;
+    @FindBy(xpath = "//ion-item//ion-label[@id='ion-input-0-lbl']//..//..//ion-item//ion-list")
+    WebElement submitCityFrom;
+    @FindBy(xpath = "//ion-item//ion-label[@id='ion-input-1-lbl']//..//..//ion-item//ion-list")
+    WebElement submitCityTo;
+    @FindBy(css = ".city")
+    List<WebElement> resultsList;
+    @FindBy(css = ".ion-color.ion-color-secondary.md.button.button-small." +
+            "button-solid.ion-activatable.ion-focusable.hydrated")
+    WebElement clearAll;
 
 
+
+    public boolean searchResultIsDisplayed(){
+        return resultsList.size()>0;
+    }
 
     public boolean sloganContainsText(String text) {
         return slogan.getText().contains(text);
@@ -79,7 +99,26 @@ public class MainPage extends PageBase{
     }
 
 
+    public void inputCityFromField(CityData cityData) throws InterruptedException {
+        inputTextToField(fromField, cityData.getCityFrom());
+        waitUntilElementVisible(submitCityFrom, 10);
+        submitCityFrom.click();
+        Thread.sleep(4000);
+    }
+    public void inputCityToField(CityData cityData){
+        inputTextToField(toField, cityData.getCityTo());
+        waitUntilElementVisible(submitCityTo, 10);
+        submitCityTo.click();
+    }
 
+    public void clickLetsGoButton() throws InterruptedException {
+        letsGoButton.click();
+        Thread.sleep(5000);
+    }
+
+    public void clickClearAllButton(){
+        clearAll.click();
+    }
 
 
 }

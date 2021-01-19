@@ -9,6 +9,7 @@ import pages.MainPage;
 public class MainPageTests extends TestBase{
     MainPage mainPage;
     ContactsPage contactsPage;
+
     @BeforeMethod
     public void initTest(){
         mainPage = PageFactory.initElements(driver,MainPage.class);

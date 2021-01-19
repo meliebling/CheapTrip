@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ContactsPage extends PageBase{
 
+
     public ContactsPage(WebDriver driver) {
         super(driver);
     }
